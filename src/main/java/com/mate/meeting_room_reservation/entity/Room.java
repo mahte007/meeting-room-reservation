@@ -2,8 +2,9 @@ package com.mate.meeting_room_reservation.entity;
 
 import jakarta.persistence.*;
 import lombok.*;
-import jakarta.validation.constraints.Min;
-import jakarta.validation.constraints.NotBlank;
+
+import java.util.ArrayList;
+import java.util.List;
 
 
 @Entity
@@ -19,16 +20,22 @@ public class Room {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @NotBlank
     @Column(unique = true, nullable = false)
     private String name;
 
-    @Min(1)
-    private int capacity;
+    @Column(nullable = false)
+    private Integer capacity;
 
-    @NotBlank
+    @Column(nullable = false)
     private String location;
 
-    private boolean hasProjector;
+    @Column(nullable = false)
+    private Boolean hasProjector;
+
+    @Column(nullable = false)
+    private Boolean active;
+
+    @OneToMany(mappedBy = "room")
+    private List<Reservation> reservations = new ArrayList<>();
 
 }

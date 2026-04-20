@@ -20,8 +20,11 @@ public class Reservation {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @NotBlank
+    @Column(nullable = false)
     private String title;
+
+    @Column(length = 1000)
+    private String description;
 
     @Column(nullable = false)
     private LocalDateTime startTime;
@@ -33,14 +36,17 @@ public class Reservation {
     @Column(nullable = false)
     private ReservationStatus status;
 
-    @Min(1)
+    @Column(nullable = false)
+    private Boolean archived;
+
+    @Column(nullable = false)
     private int attendeeCount;
 
-    @ManyToOne(optional = false)
-    @JoinColumn(name = "user_id")
-    private User user;
+    @ManyToOne(optional = false, fetch = FetchType.LAZY)
+    @JoinColumn(name = "employee_id", nullable = false)
+    private Employee employee;
 
-    @ManyToOne(optional = false)
-    @JoinColumn(name = "room_id")
+    @ManyToOne(optional = false, fetch = FetchType.LAZY)
+    @JoinColumn(name = "room_id", nullable = false)
     private Room room;
 }
