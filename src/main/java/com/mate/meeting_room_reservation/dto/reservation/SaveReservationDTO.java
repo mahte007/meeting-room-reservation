@@ -11,7 +11,7 @@ public record SaveReservationDTO(
         String description,
         @NotNull LocalDateTime startTime,
         @NotNull LocalDateTime endTime,
-        @NotNull @Min(1) Integer atendeeCount,
+        @NotNull @Min(1) Integer attendeeCount,
         @NotNull Long employeeId,
         @NotNull Long roomId
         ) {}

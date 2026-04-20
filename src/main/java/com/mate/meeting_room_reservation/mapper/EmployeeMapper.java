@@ -13,6 +13,6 @@ public interface EmployeeMapper {
 
     Employee toEntity(SaveEmployeeDTO dto);
 
-    void updateEntityFromDto(SaveEmployeeDTO fto, @MappingTarget Employee employee);
+    void updateEntityFromDto(SaveEmployeeDTO dto, @MappingTarget Employee employee);
 
 }
